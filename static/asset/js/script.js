@@ -21,8 +21,12 @@ window.addEventListener("load" , function(){
 
 
     //グラフのボタンを押した時、モーダルダイアログを表示させ、ラジオボタンの値を元にグラフを描画する。
-    $(".pie_chart").on("click", function(){ pie_chart(); });
-    $(".bar_chart").on("click", function(){ bar_chart(); });
+    //$(".pie_chart").on("click", function(){ pie_chart(); });
+    //$(".bar_chart").on("click", function(){ bar_chart(); });
+
+    //Ajaxなどによって的に表示非表示する要素にイベントリスナを設定する時このようにする。
+    $(document).on("click",".pie_chart", function() { pie_chart(); });
+    $(document).on("click",".bar_chart", function() { bar_chart(); });
 
 
     $(".category_income").on("click",function(){ console.log("収入"); });
@@ -112,6 +116,8 @@ function draw_bar_graph(){
 
 
 }
+
+//FIXME:一月に収入か支出のどちらかしか無い場合、片方のデータが欠落して、以降のデータがズレてしまう問題がある。
 function get_bar_data(){
 
     let income_data   = {};
